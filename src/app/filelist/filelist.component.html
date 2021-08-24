@@ -1,0 +1,82 @@
+ <div class="card">
+
+    <div class="p-mb-3">
+        <p-button type="button" icon="pi pi-chevron-left" (click)="prev()" [disabled]="isFirstPage()" styleClass="p-button-text"></p-button>
+        <p-button type="button" icon="pi pi-refresh" (click)="reset()" styleClass="p-button-text"></p-button>
+        <p-button type="button" icon="pi pi-chevron-right" (click)="next()" [disabled]="isLastPage()" styleClass="p-button-text"></p-button>
+    </div>
+
+
+    <input  type="file"  (change)="onFileSelected($event)" webkitdirectory placeholder="choose directory">
+
+
+    <p-table  #dt dataKey="id" [value]="products"  [paginator]="true" 
+    [rows]="rows" [showCurrentPageReport]="true" [(first)]="first"
+        currentPageReportTemplate="Total {{(products)?.length}} entries" [rowsPerPageOptions]="[10,25,50]" 
+        [globalFilterFields]="['name','path','type','size','extension','date','permission']">
+
+          <ng-template pTemplate="caption">
+              <div style="text-align: left;">
+                <p>{{products.length}} Files</p>
+
+              </div>
+            <div class="p-d-flex" style="text-align: right;">
+
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText   (input)="dt.filterGlobal(getEventValue($event), 'contains')" 
+                    placeholder="Search keyword" >         
+                </span>
+
+
+                <!-- <span class=" p-input-icon-left p-ml-auto">
+                    <input pInputText type="text" 
+                     (input)="dt.filterGlobal(getEventValue($event), 'contains')" 
+                     placeholder="Search keyword" />
+                </span> -->
+            </div>
+        </ng-template> 
+
+       
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th class="rowitem">Name 
+                </th>
+                <th>Path 
+
+                </th>
+                <th>Type 
+
+                </th>
+                <th>Size 
+
+                </th> 
+                <th>Extension 
+
+                </th>
+                <th>Date 
+                </th>
+                <th>Permissions 
+
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td  style="word-wrap: break-word" class="rowitem" >{{product.name}}</td>
+                <td style="word-wrap: break-word" class="rowitem" >
+                    <div  style="word-wrap: break-word"
+                    (click)="openPath(product.name)" type="submit" mat-raised-button color="primary"> 
+                    {{product.path}}
+                </div>
+                </td>
+                <td style="word-wrap: break-word" class="rowitem">{{product.type}}</td>
+                <td  style="word-wrap: break-word"class="rowitem">{{product.size}}</td>
+                <td  style="word-wrap: break-word"class="rowitem">{{product.extension}}</td>
+                <td style="word-wrap: break-word" class="rowitem">{{product.created}}</td>
+                <td style="word-wrap: break-word" class="rowitem">{{product.permission}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>   
