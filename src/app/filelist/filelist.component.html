@@ -6,13 +6,13 @@
         <p-button type="button" icon="pi pi-chevron-right" (click)="next()" [disabled]="isLastPage()" styleClass="p-button-text"></p-button>
     </div>
 
-
-div style="margin: 20px;"> 
+ <div style="margin: 20px;"> 
     <label for="file-upload" class="custom-file-upload">
         Choose Directory
     </label>
     <input class="btn btn-primary"  id="file-upload" style="width:200px" type="file"  (change)="onFileSelected($event)" webkitdirectory  placeholder="Select Directory">
  
+</div>
 
     <p-table  #dt dataKey="id" [value]="products"  [paginator]="true" 
     [rows]="rows" [showCurrentPageReport]="true" [(first)]="first"
