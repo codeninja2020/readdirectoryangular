@@ -7,8 +7,12 @@
     </div>
 
 
-    <input  type="file"  (change)="onFileSelected($event)" webkitdirectory placeholder="choose directory">
-
+div style="margin: 20px;"> 
+    <label for="file-upload" class="custom-file-upload">
+        Choose Directory
+    </label>
+    <input class="btn btn-primary"  id="file-upload" style="width:200px" type="file"  (change)="onFileSelected($event)" webkitdirectory  placeholder="Select Directory">
+ 
 
     <p-table  #dt dataKey="id" [value]="products"  [paginator]="true" 
     [rows]="rows" [showCurrentPageReport]="true" [(first)]="first"
